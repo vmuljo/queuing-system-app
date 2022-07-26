@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Q</title>
+</head>
+<body>
+    
+    <nav>
+        <h1>Q</h1>
+    </nav>
+    <div class="contents"> 
+        <div class="addbutton">
+            <button type="button" id="btn">Add to Queue</button> <!--Opens modal box-->
+        </div>
+
+        <div id="modalForm" class="modal">
+            <div id="modal-content">
+                <div class="modal-header">
+                    <div class="headerdiv">
+                        <h2>Join the Q</h2>
+                        <span class="close">&times;</span>
+                    </div>
+                    
+                </div>
+                
+                <div class="modal-body">
+                    <form class="queue-info">
+                        <div><label for="name">Name:</label></div>
+                        <div><input type="text" id="name" name="name"></div>
+                        <div><label for="number">Phone Number:</label></div>
+                        <div><input type="text" id="pNumber" name="number"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="listcontainer">
+            <ul>
+                <li>James Bond</li>
+                <li>Anna Wong</li>
+                <li>Victor Wembanyama</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
