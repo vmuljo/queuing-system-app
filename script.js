@@ -3,8 +3,10 @@ const modalBlock = document.querySelector("#modal-content");
 const btn = document.querySelector("#btn");
 const close = document.querySelector(".close");
 const list = document.querySelector(".namesList");
-console.log(list);
-
+console.log(list.classList);
+if(modal.classList.contains('modal-active')){
+    console.log("test");
+}
 class Person{
     name;
     number;
@@ -56,7 +58,13 @@ document.querySelector("#submitbtn").onclick = function(){
     }
     else{document.querySelector("#num-error").innerHTML ="";}
 
+    
     if(name.length > 0 && num.length > 0){
+        if(list.classList.contains('empty')){
+            list.classList.remove('empty');
+            list.innerHTML = "";
+        }
+
         valid = true;
         const li = document.createElement('li');
         li.innerHTML = name;
@@ -68,15 +76,15 @@ document.querySelector("#submitbtn").onclick = function(){
     name = "";
     num = "";
     if(valid){
-        modal.style.display = "none";
+        modalToggle();
         // const out = document.querySelector("#modal-content");
         // out.style.animation = 'animateModalOut';
     }
 }
 
 function modalToggle(){
-    modal.classList.toggle('.modal-active');
-    if(modal.classList.contains('.modal-active')){
+    modal.classList.toggle('modal-active');
+    if(modal.classList.contains('modal-active')){
         modalBlock.style.animation = `animateModal 0.3s`;
         modal.style.animation = `modalBackgroundFadeIn 0.3s`;
         modal.style.display = 'block';
