@@ -16,7 +16,11 @@
         <div class="addbutton">
             <button type="button" id="btn">Add to Queue</button> <!--Opens modal box-->
         </div>
-
+        <div class="listcontainer">
+            <ul class="namesList">
+                <p>No one is in the Queue!</p>
+            </ul>
+        </div>
         <div id="modalForm" class="modal">
             <div id="modal-content">
                 <div class="modal-header">
@@ -30,20 +34,15 @@
                 <div class="modal-body">
                     <form class="queue-info">
                         <div><label for="name">Name:</label></div>
-                        <div><input type="text" id="name" name="name"></div>
+                        <div><input type="text" id="name" name="name"><small id="name-error" class="error"></small></div>
                         <div><label for="number">Phone Number:</label></div>
-                        <div><input type="text" id="pNumber" name="number"></div>
+                        <div><input type="text" id="pNumber" name="number"><small id="num-error" class="error"></small></div>
+                        <button id="submitbtn" type="button">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="listcontainer">
-            <ul>
-                <li>James Bond</li>
-                <li>Anna Wong</li>
-                <li>Victor Wembanyama</li>
-            </ul>
-        </div>
+        
     </div>
 
     <script src="script.js"></script>
