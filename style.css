@@ -1,19 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-body{font-family: 'Poppins', sans-serif; margin: 0;}
+body{font-family: 'Poppins', sans-serif; margin: 0; }
 *{padding: 0; box-sizing: border-box; margin: 0}
 
-button{font-family: inherit; font-size: 1em; border: none; padding: 1vh 3vh; border-radius: 1vmin; cursor: pointer;}
-nav{text-align: center; background-color: antiquewhite; padding: 1vh;}
+button{font-family: inherit; background-color: #f2f3f7; font-size: 1em; border: none; padding: 1vh 3vh; border-radius: 15px; cursor: pointer;}
+nav{
+    text-align: center;
+    padding: 1vh;
+    background-image: linear-gradient(to right, #1D2539, #364363);
+    color: white;
+    box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.2);
+}
 .contents{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: lightgray;
     width: 50%;
     margin: 0 auto;
     padding-top: 1em;
 }
+
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+
+}
+
+.listcontainer{
+    width: 90%;
+    margin: 1em;
+    /* background-color: white; */
+    display: flex;
+    text-align: center;
+}
+ol{list-style:upper-roman; width: 100%;}
+li{border-bottom: 1px solid black; margin: 10px; text-align: center; background-color: white;}
+
 .modal{
     display: none;
     position: fixed;
@@ -30,16 +55,16 @@ nav{text-align: center; background-color: antiquewhite; padding: 1vh;}
 #modal-content{
     position: relative;
     background-color: #fefefe;
-    margin: 50% auto auto;
+    margin: 35% auto auto;
     height: 100%;
     padding: 0;
-    border-radius: 15px;
+    border-radius: 18px;
     box-shadow: 0px 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
 
 .modal-header{
     padding: 20px 16px;
-    background-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0.8));
+    background-image: linear-gradient(to right, #1D2539, #364363);
     color: white;
     border-radius: 15px 15px 0px 0px;
     width: 100%;
@@ -47,6 +72,7 @@ nav{text-align: center; background-color: antiquewhite; padding: 1vh;}
 
 .headerdiv{
     display: flex; flex-direction: row;
+    
     justify-content: space-between;
     width: 95%;
     margin: 0 auto;
@@ -55,18 +81,19 @@ nav{text-align: center; background-color: antiquewhite; padding: 1vh;}
 .headerdiv h2{font-size: 2em;}
 
 .modal-body{
-    padding: 30px;
+    padding: 10px 30px 30px;
+    /* background-color: red; */
 }
 
 .close{
-    color: #aaa;
+    color: white;
     font-size: 28px;
     font-weight: bold;
 
 }
 
 .close:hover, .close:focus{
-    color: white; text-decoration: none; cursor: pointer;
+    color: #FE3B32; text-decoration: none; cursor: pointer;
 }
 
 .queue-info{
@@ -74,34 +101,38 @@ nav{text-align: center; background-color: antiquewhite; padding: 1vh;}
     grid-template-rows: auto auto;
     grid-template-columns: 100%;
     justify-content: space-around;
+    align-content: space-between;
     margin: auto;
     width: 90%;
 }
 
+/* .queue-info div{margin: 5px;} */
+
 .queue-info label{
-    font-size: x-large;
+    font-size: 18px;
 }
+
+.label{margin-top: 1em;}
 
 .queue-info input{
     border: 0;
-    border-bottom: 2px solid black;
+    border-bottom: 1.7px solid black;
     width: 100%;
-    padding: 5px;
-    font-size: 12px;
+    padding: 3px;
+    font-size: 16px;
     font-family: inherit;
-    margin-bottom: 1em;
+    margin: 0;
+}
+
+.queue-info button{
+    margin-top: 25px;
+}
+.queue-info button:hover{
+    cursor: pointer;
 }
 
 .error{color: red; font-size: 1em;}
-.listcontainer{
-    width: 90%;
-    margin: 1em;
-    /* background-color: white; */
-    display: flex;
-    text-align: center;
-}
-ul{list-style: none; width: 100%;}
-li{border-bottom: 2px solid black; border-radius: 5px; margin: 10px; text-align: center; background-color: white;}
+
 
 /*Small Devices: Landscape Phones*/
 @media (min-width: 576px){
@@ -112,19 +143,7 @@ li{border-bottom: 2px solid black; border-radius: 5px; margin: 10px; text-align:
 @media (min-width: 768px){
     #modal-content{width: 55%;border: 1px solid #888; height:auto; margin: 15% auto auto;}
     .headerdiv h2{font-size: x-large;}
-    .queue-info{
-        grid-template-rows: auto auto;
-        grid-template-columns: 30% 60%;
-        justify-content: space-around;
-        margin: auto;
-    }
-    .queue-info label{
-        font-size: medium;
-    }
-    .queue-info input{margin-bottom: 1em;}
-    .error{font-size: 12px;}
-    
-    
+    .error{font-size: 14px;}
 }
 
 /*Large Devices: Laptops*/

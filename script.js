@@ -33,11 +33,15 @@ btn.addEventListener('click', ()=>{
 
 close.addEventListener('click', ()=>{
     modalToggle();
+    document.querySelector("#name-error").innerHTML ="";
+    document.querySelector("#num-error").innerHTML ="";
 });
 
 window.addEventListener('click', (e)=>{
     if(e.target == modal){
         modalToggle();
+        document.querySelector("#name-error").innerHTML ="";
+        document.querySelector("#num-error").innerHTML ="";
     }
 });
 
@@ -70,13 +74,15 @@ document.querySelector("#submitbtn").onclick = function(){
         li.innerHTML = name;
         list.appendChild(li);
         console.log(document.querySelectorAll(".namesList li"))
+        document.querySelector("#name").value = "";
+        document.querySelector("#pNumber").value = "";
+        modalToggle();
     }
 
-    // Clear form fields
-    name = "";
-    num = "";
+    
     if(valid){
-        modalToggle();
+        // Clear form fields
+        
         // const out = document.querySelector("#modal-content");
         // out.style.animation = 'animateModalOut';
     }

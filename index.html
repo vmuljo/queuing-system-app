@@ -8,19 +8,23 @@
     <title>Q</title>
 </head>
 <body>
-    
-    <nav>
-        <h1>Q</h1>
-    </nav>
+    <div class="header">
+        <nav>
+            <h1>Q</h1>
+        </nav>
+    </div>
     <div class="contents"> 
-        <div class="addbutton">
-            <button type="button" id="btn">Add to Queue</button> <!--Opens modal box-->
+        <div class="main">
+            <div class="addbutton">
+                <button type="button" id="btn">Add to Queue</button> <!--Opens modal box-->
+            </div>
+            <div class="listcontainer">
+                <ol class="namesList empty">
+                    No one is in the Queue!
+                </ol>
+            </div>
         </div>
-        <div class="listcontainer">
-            <ul class="namesList empty">
-                No one is in the Queue!
-            </ul>
-        </div>
+        
         <div id="modalForm" class="modal">
             <div id="modal-content">
                 <div class="modal-header">
@@ -33,10 +37,10 @@
                 
                 <div class="modal-body">
                     <form class="queue-info">
-                        <div><label for="name">Name:</label></div>
-                        <div><input type="text" id="name" name="name"><small id="name-error" class="error"></small></div>
-                        <div><label for="number">Phone Number:</label></div>
-                        <div><input type="text" id="pNumber" name="number"><small id="num-error" class="error"></small></div>
+                        <div class="label"><label for="name">Name:</label></div>
+                        <div class="input"><input type="text" id="name" name="name"><small id="name-error" class="error"></small></div>
+                        <div class="label"><label for="number">Phone Number:</label></div>
+                        <div class="input"><input type="text" id="pNumber" name="number"><small id="num-error" class="error"></small></div>
                         <button id="submitbtn" type="button">Submit</button>
                     </form>
                 </div>
