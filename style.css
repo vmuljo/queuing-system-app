@@ -25,19 +25,32 @@ nav{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 20px;
-
+    margin-top: 8px;
 }
+
+.addbutton{
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+
+.addbutton div{margin: 0 5px;}
 
 .listcontainer{
-    width: 90%;
+    width: 70vw;
     margin: 1em;
-    /* background-color: white; */
+    /* background-color: antiquewhite; */
+    padding: 1em;
+    border: 2px solid #1D2539;
+    border-radius: 15px;
     display: flex;
     text-align: center;
+    flex-direction: column;
 }
-ol{list-style:upper-roman; width: 100%;}
-li{border-bottom: 1px solid black; margin: 10px; text-align: center; background-color: white;}
+ol{list-style:none; width: 100%;}
+li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: center; background-color: #f2f3f7; width: 100%;}
 
 .modal{
     display: none;
@@ -122,7 +135,9 @@ li{border-bottom: 1px solid black; margin: 10px; text-align: center; background-
     font-size: 16px;
     font-family: inherit;
     margin: 0;
+    outline-color: #364363;
 }
+
 
 .queue-info button{
     margin-top: 25px;
@@ -144,6 +159,7 @@ li{border-bottom: 1px solid black; margin: 10px; text-align: center; background-
     #modal-content{width: 55%;border: 1px solid #888; height:auto; margin: 15% auto auto;}
     .headerdiv h2{font-size: x-large;}
     .error{font-size: 14px;}
+    .listcontainer{width: 40vw;}
 }
 
 /*Large Devices: Laptops*/

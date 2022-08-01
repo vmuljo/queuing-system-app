@@ -3,18 +3,20 @@ const modalBlock = document.querySelector("#modal-content");
 const btn = document.querySelector("#btn");
 const close = document.querySelector(".close");
 const list = document.querySelector(".namesList");
-console.log(list.classList);
-if(modal.classList.contains('modal-active')){
-    console.log("test");
-}
+const contents = document.querySelector(".contents");
+var queue = [];
+
 class Person{
     name;
     number;
-    // email;
 
     constructor(name_, number_){
         this.name = name_;
         this.number = number_;
+    }
+
+    getName(){
+        return this.name;
     }
 
     getPersonInfo(){
@@ -27,6 +29,55 @@ class Person{
     }
 }
 
+class Admin{
+    pin;
+
+
+}
+
+
+var queueList = document.querySelectorAll(".namesList li");
+var queueArray = Array.from(queueList); 
+
+document.querySelector("#submitbtn").onclick = function(){
+    var name = document.querySelector("#name").value.trim();
+    var num = document.querySelector("#pNumber").value.trim();
+    var valid = true;
+
+    if(name.length == 0){
+        document.querySelector("#name-error").innerHTML = "Name cannot be empty.";
+        valid = false;
+    }
+    else{document.querySelector("#name-error").innerHTML =""; valid = true;}
+
+    if(num.length == 0){
+        document.querySelector("#num-error").innerHTML = "Number cannot be empty.";
+        valid = false;
+    }
+    else{document.querySelector("#num-error").innerHTML =""; valid = true;}
+
+    
+    if(valid){
+        if(list.classList.contains('empty')){
+            list.classList.remove('empty');
+            list.innerHTML = "";
+        }
+        const person = new Person(name, num);
+        queue.push(person);
+        var latestPushedName = queue.at(-1).name;
+
+        const li = document.createElement('li');
+        li.innerHTML = latestPushedName;
+        list.appendChild(li);
+        queueList = document.querySelectorAll(".namesList li");
+        queueArray = Array.from(queueList); 
+        console.log(queueArray);
+        document.querySelector("#name").value = "";
+        document.querySelector("#pNumber").value = "";
+        modalToggle();
+    }
+
+}
 btn.addEventListener('click', ()=>{
     modalToggle();
 });
@@ -44,48 +95,35 @@ window.addEventListener('click', (e)=>{
         document.querySelector("#num-error").innerHTML ="";
     }
 });
-
-document.querySelector("#submitbtn").onclick = function(){
-    var name = document.querySelector("#name").value.trim();
-    var num = document.querySelector("#pNumber").value.trim();
-    var valid = true;
-
-    if(name.length == 0){
-        document.querySelector("#name-error").innerHTML = "Name cannot be empty.";
-        valid = false;
-    }
-    else{document.querySelector("#name-error").innerHTML ="";}
-
-    if(num.length == 0){
-        document.querySelector("#num-error").innerHTML = "Number cannot be empty.";
-        valid = false;
-    }
-    else{document.querySelector("#num-error").innerHTML ="";}
-
-    
-    if(name.length > 0 && num.length > 0){
-        if(list.classList.contains('empty')){
-            list.classList.remove('empty');
-            list.innerHTML = "";
+const remove = document.querySelector('#btn1');
+btn1.addEventListener('click', ()=>{
+    var cleared = false;
+    // console.log(list);
+    console.log(queueList);
+    if(queueList.length > 0 && !cleared){
+        const first = queueArray.shift();
+        const firstOut = queue.shift();
+        list.removeChild(list.children[0]);
+        console.log(queueArray);
+        queueList = document.querySelectorAll(".namesList li");
+        if(queueList.length == 0){
+            list.classList.add("empty");
+            list.innerHTML = "No one is in the Queue!";
         }
-
-        valid = true;
-        const li = document.createElement('li');
-        li.innerHTML = name;
-        list.appendChild(li);
-        console.log(document.querySelectorAll(".namesList li"))
-        document.querySelector("#name").value = "";
-        document.querySelector("#pNumber").value = "";
-        modalToggle();
     }
-
-    
-    if(valid){
-        // Clear form fields
+    else{
+        list.classList.add("empty");
+        list.innerHTML = "No one is in the Queue!";
+        console.log("No one is in the Queue!");
+        alert("No one is in the queue!");
         
-        // const out = document.querySelector("#modal-content");
-        // out.style.animation = 'animateModalOut';
+        var cleared = true;
     }
+    console.log(queueList.length);
+})
+
+if(contents.classList.contains("admin")){ // check if admin mode is activated
+    //remove from list when clicking on x
 }
 
 function modalToggle(){
@@ -104,4 +142,6 @@ function modalToggle(){
         
     }
 }
+
+
 
