@@ -3,7 +3,7 @@ const modalBlock = document.querySelector("#modal-content");
 const btn = document.querySelector("#btn");
 const close = document.querySelector(".close");
 const list = document.querySelector(".namesList");
-const contents = document.querySelector(".contents");
+var contents = document.querySelector(".contents");
 var queue = [];
 
 class Person{
@@ -33,6 +33,38 @@ class Admin{
     pin;
 
 
+}
+
+function adminToggle(){
+    contents = document.querySelector('.contents')
+    contents.classList.toggle("admin");
+    if(contents.classList.contains("admin")){
+        var button = document.createElement('button');
+        button.type = "button";
+        button.id = "btn-remove";
+        button.innerHTML = "Remove First";
+        document.querySelector(".buttons").appendChild(button); 
+    }
+    else{
+        document.querySelectorAll(".buttons").removeChild[1];
+    }
+}
+
+function modalToggle(){
+    modal.classList.toggle('modal-active');
+    if(modal.classList.contains('modal-active')){
+        modalBlock.style.animation = `animateModal 0.3s`;
+        modal.style.animation = `modalBackgroundFadeIn 0.3s`;
+        modal.style.display = 'block';
+    }
+    else{
+        modalBlock.style.animation = `animateModalOut 0.3s`;
+        modal.style.animation = `modalBackgroundFadeOut 0.3s`;
+        setTimeout(function(){
+            modal.style.display = 'none';
+        }, 250)
+        
+    }
 }
 
 
@@ -95,8 +127,7 @@ window.addEventListener('click', (e)=>{
         document.querySelector("#num-error").innerHTML ="";
     }
 });
-const remove = document.querySelector('#btn1');
-btn1.addEventListener('click', ()=>{
+document.querySelector('#btn-remove').onclick = function(){
     var cleared = false;
     // console.log(list);
     console.log(queueList);
@@ -120,28 +151,13 @@ btn1.addEventListener('click', ()=>{
         var cleared = true;
     }
     console.log(queueList.length);
-})
+}
 
 if(contents.classList.contains("admin")){ // check if admin mode is activated
     //remove from list when clicking on x
 }
 
-function modalToggle(){
-    modal.classList.toggle('modal-active');
-    if(modal.classList.contains('modal-active')){
-        modalBlock.style.animation = `animateModal 0.3s`;
-        modal.style.animation = `modalBackgroundFadeIn 0.3s`;
-        modal.style.display = 'block';
-    }
-    else{
-        modalBlock.style.animation = `animateModalOut 0.3s`;
-        modal.style.animation = `modalBackgroundFadeOut 0.3s`;
-        setTimeout(function(){
-            modal.style.display = 'none';
-        }, 250)
-        
-    }
-}
+
 
 
 

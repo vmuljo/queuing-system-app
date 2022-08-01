@@ -28,7 +28,7 @@ nav{
     margin-top: 8px;
 }
 
-.addbutton{
+.buttons{
     display: flex;
     width: 90%;
     justify-content: space-evenly;
@@ -36,7 +36,7 @@ nav{
     flex-direction: row;
 }
 
-.addbutton div{margin: 0 5px;}
+.buttons div{margin: 0 5px;}
 
 .listcontainer{
     width: 70vw;
