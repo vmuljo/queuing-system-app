@@ -3,8 +3,11 @@ const modalBlock = document.querySelector("#modal-content");
 const btn = document.querySelector("#btn");
 const close = document.querySelector(".close");
 const list = document.querySelector(".namesList");
+const admin = document.querySelector(".admin-enable");
 var contents = document.querySelector(".contents");
 var queue = [];
+var queueList = document.querySelectorAll(".namesList li");
+var queueArray = Array.from(queueList); 
 
 class Person{
     name;
@@ -39,14 +42,15 @@ function adminToggle(){
     contents = document.querySelector('.contents')
     contents.classList.toggle("admin");
     if(contents.classList.contains("admin")){
-        var button = document.createElement('button');
-        button.type = "button";
-        button.id = "btn-remove";
-        button.innerHTML = "Remove First";
-        document.querySelector(".buttons").appendChild(button); 
+        // var button = document.createElement('button');
+        // button.type = "button";
+        // button.id = "btn-remove";
+        // button.innerHTML = "Remove First";
+        // document.querySelector(".buttons").appendChild(button); 
+        document.querySelector('#btn-remove').style.display = "block";
     }
     else{
-        document.querySelectorAll(".buttons").removeChild[1];
+        document.querySelector("#btn-remove").style.display = 'none';
     }
 }
 
@@ -67,23 +71,19 @@ function modalToggle(){
     }
 }
 
-
-var queueList = document.querySelectorAll(".namesList li");
-var queueArray = Array.from(queueList); 
-
 document.querySelector("#submitbtn").onclick = function(){
     var name = document.querySelector("#name").value.trim();
     var num = document.querySelector("#pNumber").value.trim();
     var valid = true;
 
     if(name.length == 0){
-        document.querySelector("#name-error").innerHTML = "Name cannot be empty.";
+        document.querySelector("#name-error").innerHTML = "&#9888; Name cannot be empty.";
         valid = false;
     }
     else{document.querySelector("#name-error").innerHTML =""; valid = true;}
 
     if(num.length == 0){
-        document.querySelector("#num-error").innerHTML = "Number cannot be empty.";
+        document.querySelector("#num-error").innerHTML = "&#9888; Number cannot be empty.";
         valid = false;
     }
     else{document.querySelector("#num-error").innerHTML =""; valid = true;}
@@ -110,23 +110,7 @@ document.querySelector("#submitbtn").onclick = function(){
     }
 
 }
-btn.addEventListener('click', ()=>{
-    modalToggle();
-});
 
-close.addEventListener('click', ()=>{
-    modalToggle();
-    document.querySelector("#name-error").innerHTML ="";
-    document.querySelector("#num-error").innerHTML ="";
-});
-
-window.addEventListener('click', (e)=>{
-    if(e.target == modal){
-        modalToggle();
-        document.querySelector("#name-error").innerHTML ="";
-        document.querySelector("#num-error").innerHTML ="";
-    }
-});
 document.querySelector('#btn-remove').onclick = function(){
     var cleared = false;
     // console.log(list);
@@ -134,6 +118,7 @@ document.querySelector('#btn-remove').onclick = function(){
     if(queueList.length > 0 && !cleared){
         const first = queueArray.shift();
         const firstOut = queue.shift();
+        console.log(list);
         list.removeChild(list.children[0]);
         console.log(queueArray);
         queueList = document.querySelectorAll(".namesList li");
@@ -153,9 +138,38 @@ document.querySelector('#btn-remove').onclick = function(){
     console.log(queueList.length);
 }
 
-if(contents.classList.contains("admin")){ // check if admin mode is activated
-    //remove from list when clicking on x
+btn.onclick = () => {modalToggle();}
+close.onclick = () => {
+    modalToggle();
+    document.querySelector("#name-error").innerHTML ="";
+    document.querySelector("#num-error").innerHTML ="";
 }
+window.onclick = (e) => {
+    if(e.target == modal){
+        modalToggle();
+        document.querySelector("#name-error").innerHTML ="";
+        document.querySelector("#num-error").innerHTML ="";
+    }
+}
+// close.addEventListener('click', ()=>{
+//     modalToggle();
+//     document.querySelector("#name-error").innerHTML ="";
+//     document.querySelector("#num-error").innerHTML ="";
+// });
+
+// window.addEventListener('click', (e)=>{
+//     if(e.target == modal){
+//         modalToggle();
+//         document.querySelector("#name-error").innerHTML ="";
+//         document.querySelector("#num-error").innerHTML ="";
+//     }
+// });
+
+admin.onclick = ()=>{
+    adminToggle();
+}
+
+
 
 
 

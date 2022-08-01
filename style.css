@@ -5,10 +5,19 @@ body{font-family: 'Poppins', sans-serif; margin: 0; }
 button{font-family: inherit; background-color: #f2f3f7; font-size: 1em; border: none; padding: 1vh 3vh; border-radius: 15px; cursor: pointer;}
 nav{
     text-align: center;
-    padding: 1vh;
+    padding: 1vh 2vh;
     background-image: linear-gradient(to right, #1D2539, #364363);
     color: white;
     box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#empty {width: 20px;}
+.admin-enable{
+    font-size: 20px;
+    cursor: pointer;
 }
 .contents{
     display: flex;
@@ -37,6 +46,10 @@ nav{
 }
 
 .buttons div{margin: 0 5px;}
+
+#btn-remove{
+    display: none;
+}
 
 .listcontainer{
     width: 70vw;
