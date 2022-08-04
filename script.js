@@ -169,7 +169,7 @@ document.querySelector("#submitbtn").onclick = function(){
         document.querySelector("#name").value = "";
         document.querySelector("#pNumber").value = "";
         modalToggle();
-        // removeQueueEntry();
+        removeQueueEntry();
     }
 
 }
