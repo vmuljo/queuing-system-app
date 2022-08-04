@@ -29,6 +29,16 @@ nav{
     padding-top: 1em;
 }
 
+.admin-option{
+    cursor: pointer;
+    display: block;
+}
+
+.guest-option{
+    cursor: default;
+    display: none;
+}
+
 .main{
     display: flex;
     align-items: center;
@@ -48,7 +58,7 @@ nav{
 .buttons div{margin: 0 5px;}
 
 #btn-remove{
-    display: none;
+    /* display: none; */
 }
 
 .listcontainer{
@@ -63,8 +73,18 @@ nav{
     flex-direction: column;
 }
 ol{list-style:none; width: 100%;}
-li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: center; background-color: #f2f3f7; width: 100%;}
+li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: center; background-color: #f2f3f7; width: 90%;}
+.queue-entry{
+    display: flex;
+    flex-direction: row;
+    /* background-color: blue; */
+    justify-content: center;
+}
 
+.remove, .ready{font-size: 26px; margin: auto 5px; cursor: pointer;}
+
+
+/* #modalForm{display: none;} */
 .modal{
     display: none;
     position: fixed;
@@ -74,11 +94,10 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
     width: 100%;
     height: 100%;
     overflow: hidden; 
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-#modal-content{
+#modal-content, #adminModal{
     position: relative;
     background-color: #fefefe;
     margin: 35% auto auto;
@@ -87,6 +106,14 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
     border-radius: 18px;
     box-shadow: 0px 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
+
+#adminModal{
+    /* margin: 100% auto auto; */
+    position: relative;
+    top: 50%;
+    display: none;
+}
+
 
 .modal-header{
     padding: 20px 16px;
@@ -115,7 +142,6 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
     color: white;
     font-size: 28px;
     font-weight: bold;
-
 }
 
 .close:hover, .close:focus{
@@ -132,15 +158,27 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
     width: 90%;
 }
 
+.admin-info{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 35% 65%;
+    justify-content: center;
+    /* align-content: space-around; */
+    align-items: flex-end;
+    margin: auto;
+    width: 90%;
+    /* background-color: red; */
+}
+
 /* .queue-info div{margin: 5px;} */
 
-.queue-info label{
+.queue-info label, .admin-info label{
     font-size: 18px;
 }
 
 .label{margin-top: 1em;}
 
-.queue-info input{
+.queue-info input, .admin-info input{
     border: 0;
     border-bottom: 1.7px solid black;
     width: 100%;
@@ -161,18 +199,32 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
 
 .error{color: red; font-size: 1em;}
 
+/* Super Small Devices: Fold
+@media (min-width: 360px){
+    #adminModal{
+        height: 24%;
+    }
+} */
 
 /*Small Devices: Landscape Phones*/
 @media (min-width: 576px){
-
+    #adminModal{
+        height: 23%;
+    }
 }
 
 /*Medium Devices: Tablets*/
 @media (min-width: 768px){
-    #modal-content{width: 55%;border: 1px solid #888; height:auto; margin: 15% auto auto;}
+    #modal-content, #adminModal{width: 55%;border: 1px solid #888; height:auto; margin: 15% auto auto;}
     .headerdiv h2{font-size: x-large;}
     .error{font-size: 14px;}
     .listcontainer{width: 40vw;}
+    #adminModal{
+        /* margin: 100% auto auto; */
+        position: relative;
+        top: 0%;
+    }
+    
 }
 
 /*Large Devices: Laptops*/
@@ -182,7 +234,6 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
 
 /*Extra Large Devices:  Large desktops*/
 @media (min-width: 1200px){
-	
 }
 
 @-webkit-keyframes animateModal{

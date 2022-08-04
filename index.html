@@ -10,16 +10,34 @@
 <body>
     <div class="header">
         <nav>
-            <span id="empty"></span>
+            <span id="empty" class="slide"></span>
             <h1>Q</h1>
-            <span class="admin-enable">&#9998;</span>
+            <span class="admin-enable slide">&#9998;</span>
         </nav>
+        <div class="modal">
+            <div id="adminModal">
+                <div class="modal-header">
+                    <div class="headerdiv">
+                        <h2>Enter admin pin</h2>
+                        <span class="close">&times;</span>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="admin-info">
+                        <div class="label"><label for="pin">PIN:</label></div>
+                        <div class="input"><input type="text" id="pin" name="pin"><small id="admin-error" class="error"></small></div>
+                        <button id="submitbutton" type="button">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="contents"> 
         <div class="main">
             <div class="buttons">
                 <button type="button" id="btn">Add to Queue</button> <!--Opens modal box-->
-                <button type="button" id="btn-remove">Remove First</button>
+                <button type="button" id="btn-remove" class="guest-option">Remove First</button>
+                <button type="button" id="btn-clear" class="guest-option">Clear Queue</button>
             </div>
             <div class="listcontainer">
                 <h2>Next up: </h2>
@@ -34,7 +52,7 @@
                 <div class="modal-header">
                     <div class="headerdiv">
                         <h2>Join the Q</h2>
-                        <span class="close">&times;</span>
+                        <span class="close" id="queueclose">&times;</span>
                     </div>
                     
                 </div>
