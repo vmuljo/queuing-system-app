@@ -1,7 +1,10 @@
 const modal = document.querySelector("#modalForm");
-const modalBlock = document.querySelector("#modal-content");
+const infoModal = document.querySelector('#info-modal')
+const queueModalBlock = document.querySelector("#queue-modal-content");
+const infoModalBlock = document.querySelector("#info-modal-content");
 const btn = document.querySelector("#btn");
-const close = document.querySelector("#queueclose");
+const queueclose = document.querySelector("#queueclose");
+const infoclose = document.querySelector("#infoclose");
 const list = document.querySelector(".namesList");
 const admin = document.querySelector(".admin-enable");
 var contents = document.querySelector(".contents");
@@ -9,9 +12,11 @@ var queue = [];
 var queueList = document.querySelectorAll(".namesList li");
 var queueArray = Array.from(queueList); 
 
+const info = document.querySelector('#info-modal-content');
 class Person{
     name;
     number;
+    status = false;
 
     constructor(name_, number_){
         this.name = name_;
@@ -32,20 +37,18 @@ class Person{
     }
 }
 
-class Admin{
-    pin;
-
-
-}
-
+// Toggles between guest and admin mode
 function adminToggle(){
     contents = document.querySelector('.contents')
     contents.classList.toggle("admin");
     if(contents.classList.contains("admin")){
         const guestoptions = document.querySelectorAll('.guest-option');
+        viewGuest();
         guestoptions.forEach(guestoption => {
             guestoption.classList.add('admin-option');
             guestoption.classList.remove('guest-option');
+            guestoption.parentNode.childNodes[1].style.cursor = "pointer";
+            
         });
     }
     else{
@@ -53,65 +56,79 @@ function adminToggle(){
         adminoptions.forEach(adminoption => {
             adminoption.classList.add('guest-option');
             adminoption.classList.remove('admin-option');
+            adminoption.parentNode.childNodes[1].style.cursor = "default";
         });
     }
 }
 
-function modalToggle(){
-    modal.classList.toggle('modal-active');
-    if(modal.classList.contains('modal-active')){
-        modalBlock.style.animation = `animateModal 0.3s`;
-        modal.style.animation = `modalBackgroundFadeIn 0.3s`;
-        modal.style.display = 'block';
+// Toggles the modal to add to queue
+function modalToggle(modalClass, modalContent){
+    modalClass.classList.toggle('modal-active');
+    if(modalClass.classList.contains('modal-active')){
+        modalContent.style.animation = `animateModal 0.3s`;
+        modalClass.style.animation = `modalBackgroundFadeIn 0.3s`;
+        modalClass.style.display = 'block';
     }
     else{
-        modalBlock.style.animation = `animateModalOut 0.3s`;
-        modal.style.animation = `modalBackgroundFadeOut 0.3s`;
+        modalContent.style.animation = `animateModalOut 0.3s`;
+        modalClass.style.animation = `modalBackgroundFadeOut 0.3s`;
         setTimeout(function(){
-            modal.style.display = 'none';
+            modalClass.style.display = 'none';
         }, 250)
-        
     }
 }
 
 function viewGuest(){
-    const guestList = document.querySelectorAll('.queue-entry');
+    // contents = document.querySelector(".contents");
 
-    guestList.forEach(guest => {
-        guest[i].onclick = () => {
+    var name = document.querySelector('#person');
+    var spot = document.querySelector('#index');
+    var phone = document.querySelector('#num');
+    var status = document.querySelector('#status');
 
-        }
-    })
-    for(var i = 0; i<guest.length; i++){
-        guest[i].onclick = () => {
-            console.log(queue)
-        }
+    if(document.querySelector('.contents').classList.contains("admin")){
+        queueList = document.querySelectorAll(".queue-entry li");
+        queueList.forEach((guest, i) =>{
+            guest.onclick = function(){
+                console.log(this);
+                console.log(queue[i]);
+                name.innerHTML = queue.at(i).name;
+                spot.innerHTML = i+1;
+                phone.innerHTML = queue[i].number;
+                if(queue[i].status){
+                    status.innerHTML = "Attended to";
+                }
+                else{status.innerHTML = "Waiting"}
+                // status.innerHTML = queue[i].status;
+                modalToggle(infoModal, infoModalBlock);
+            }
+        })
     }
 }
+viewGuest();
 
-function guestModal(){
-
-}
-
+// Removes queue entry on click when in admin mode
 function removeQueueEntry(){
     var guestList = document.getElementsByClassName('remove');
     for(var i = 0; i<guestList.length; i++){
         guestList[i].onclick = function(){
+            console.log(i);
             console.log(guestList.length);
             this.parentNode.remove();
             if(guestList.length == 0) makeEmpty();
         }
     }
 }
+removeQueueEntry();
 
+// Function to add text to empty queue and set list as empty
 function makeEmpty(){
     list.classList.add("empty");
     list.innerHTML = "No one is in the Queue!";
     console.log("No one is in the Queue!");
 }
 
-removeQueueEntry();
-
+// When the submit button is clicked, add to queue
 document.querySelector("#submitbtn").onclick = function(){
     var name = document.querySelector("#name").value.trim();
     var num = document.querySelector("#pNumber").value.trim();
@@ -147,11 +164,13 @@ document.querySelector("#submitbtn").onclick = function(){
         div_li.classList.add('queue-entry');
         deleteSpan.classList.add('guest-option', 'remove');
         readySpan.classList.add('guest-option', 'ready');
+        li.style.cursor = "default";
         if(document.querySelector('.contents').classList.contains('admin')){
             deleteSpan.classList.add('admin-option');
             readySpan.classList.add('admin-option');
             deleteSpan.classList.remove('guest-option');
             readySpan.classList.remove('guest-option');
+            li.style.cursor = "pointer";
         }
 
         deleteSpan.innerHTML = "&#10006;";
@@ -168,12 +187,13 @@ document.querySelector("#submitbtn").onclick = function(){
         // console.log(queueArray);
         document.querySelector("#name").value = "";
         document.querySelector("#pNumber").value = "";
-        modalToggle();
+        modalToggle(modal, queueModalBlock);
         removeQueueEntry();
+        viewGuest();
     }
 
 }
-
+// Admin button: Removes first person from queue
 document.querySelector('#btn-remove').onclick = () => {
     var cleared = false;
     // console.log(list);
@@ -198,6 +218,7 @@ document.querySelector('#btn-remove').onclick = () => {
     console.log(queueList.length);
 }
 
+// Admin button: Clears the queue
 document.querySelector('#btn-clear').onclick = () => {
     if(queueList.length > 0){
         list.innerHTML = '';
@@ -210,19 +231,35 @@ document.querySelector('#btn-clear').onclick = () => {
     alert("No one is in the queue!");
 }
 
-btn.onclick = () => {modalToggle();}
-close.onclick = () => {
-    modalToggle();
-    document.querySelector("#name-error").innerHTML ="";
-    document.querySelector("#num-error").innerHTML ="";
-}
-window.onclick = (e) => {
-    if(e.target == modal){
-        modalToggle();
+btn.onclick = () => {modalToggle(modal, queueModalBlock);} // When "Add to queue" button is clicked, open modal
+// When "x" in modal is clicked, close the modal and clear input fields
+queueclose.onclick = function(){
+        modalToggle(modal, queueModalBlock);
         document.querySelector("#name-error").innerHTML ="";
         document.querySelector("#num-error").innerHTML ="";
+}
+
+infoclose.onclick = () => {
+    modalToggle(infoModal, infoModalBlock);
+}
+// When anywhere outside of the modal window is clicked, close the modal
+window.onclick = (e) => {
+    if(e.target == modal){
+        modalToggle(modal, queueModalBlock);
+        document.querySelector("#name-error").innerHTML ="";
+        document.querySelector("#num-error").innerHTML ="";
+        return;
+    }
+    if(e.target == infoModal){
+        modalToggle(infoModal, infoModalBlock);
     }
 }
+
+// When admin (pencil) button is clicked, close modal
+admin.onclick = ()=>{
+    adminToggle();
+}
+
 // close.addEventListener('click', ()=>{
 //     modalToggle();
 //     document.querySelector("#name-error").innerHTML ="";
@@ -237,9 +274,7 @@ window.onclick = (e) => {
 //     }
 // });
 
-admin.onclick = ()=>{
-    adminToggle();
-}
+
 
 
 

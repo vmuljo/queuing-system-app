@@ -24,7 +24,7 @@ nav{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
     padding-top: 1em;
 }
@@ -45,6 +45,7 @@ nav{
     justify-content: center;
     flex-direction: column;
     margin-top: 8px;
+    width: 50%;
 }
 
 .buttons{
@@ -52,14 +53,12 @@ nav{
     width: 90%;
     justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
     flex-direction: row;
+    /* flex-direction:ro */
 }
 
-.buttons div{margin: 0 5px;}
-
-#btn-remove{
-    /* display: none; */
-}
+.buttons div{margin: 0 5px;overflow: hidden;}
 
 .listcontainer{
     width: 70vw;
@@ -85,7 +84,7 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
 
 
 /* #modalForm{display: none;} */
-.modal{
+.modal, .modal1{
     display: none;
     position: fixed;
     left: 0;
@@ -97,7 +96,9 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-#modal-content, #adminModal{
+/* .modal1{display:block;} */
+
+.modal-content{
     position: relative;
     background-color: #fefefe;
     margin: 35% auto auto;
@@ -124,8 +125,8 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
 }
 
 .headerdiv{
-    display: flex; flex-direction: row;
-    
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     width: 95%;
     margin: 0 auto;
@@ -197,6 +198,18 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
     cursor: pointer;
 }
 
+#person-info p{
+    font-size: 20px;
+}
+
+#info-buttons{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content:space-evenly;
+    margin-top: 132px;
+}
+
 .error{color: red; font-size: 1em;}
 
 /* Super Small Devices: Fold
@@ -215,7 +228,7 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
 
 /*Medium Devices: Tablets*/
 @media (min-width: 768px){
-    #modal-content, #adminModal{width: 55%;border: 1px solid #888; height:auto; margin: 15% auto auto;}
+    .modal-content {width: 55%;border: 1px solid #888; height:auto; margin: 12% auto auto;}
     .headerdiv h2{font-size: x-large;}
     .error{font-size: 14px;}
     .listcontainer{width: 40vw;}
