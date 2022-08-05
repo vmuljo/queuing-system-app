@@ -44,6 +44,7 @@ function adminToggle(){
     if(contents.classList.contains("admin")){
         const guestoptions = document.querySelectorAll('.guest-option');
         viewGuest();
+        queueEntryAttended()
         guestoptions.forEach(guestoption => {
             guestoption.classList.add('admin-option');
             guestoption.classList.remove('guest-option');
@@ -110,16 +111,31 @@ viewGuest();
 // Removes queue entry on click when in admin mode
 function removeQueueEntry(){
     var guestList = document.getElementsByClassName('remove');
-    for(var i = 0; i<guestList.length; i++){
-        guestList[i].onclick = function(){
+    Array.from(guestList).forEach((guest, i) => {
+        guest.onclick = function(){
             console.log(i);
             console.log(guestList.length);
             this.parentNode.remove();
             if(guestList.length == 0) makeEmpty();
+            queue.splice(i, 1);
         }
-    }
+    })
 }
 removeQueueEntry();
+
+function queueEntryAttended(){
+    var guestList = document.querySelectorAll('.ready');
+    guestList.forEach((guest, i) => {
+        guest.onclick = function(){
+            console.log(i);
+            console.log(guestList.length);
+            queue[i].status = true;
+            // this.parentNode.remove();
+            // if(guestList.length == 0) makeEmpty();
+        }
+    })
+}
+queueEntryAttended()
 
 // Function to add text to empty queue and set list as empty
 function makeEmpty(){
@@ -259,26 +275,3 @@ window.onclick = (e) => {
 admin.onclick = ()=>{
     adminToggle();
 }
-
-// close.addEventListener('click', ()=>{
-//     modalToggle();
-//     document.querySelector("#name-error").innerHTML ="";
-//     document.querySelector("#num-error").innerHTML ="";
-// });
-
-// window.addEventListener('click', (e)=>{
-//     if(e.target == modal){
-//         modalToggle();
-//         document.querySelector("#name-error").innerHTML ="";
-//         document.querySelector("#num-error").innerHTML ="";
-//     }
-// });
-
-
-
-
-
-
-
-
-
