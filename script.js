@@ -13,7 +13,6 @@ var queueList = document.querySelectorAll(".namesList li");
 var queueArray = Array.from(queueList); 
 var queuelock = document.querySelector('#queue-lock');
 var lockToggle = false;
-// var queuebtn = document.querySelector('#btn')
 
 const info = document.querySelector('#info-modal-content');
 class Person{
@@ -136,6 +135,7 @@ function removeQueueEntry(){
 }
 removeQueueEntry();
 
+// Function to set guest as attended if check mark clicked
 function queueEntryAttended(){
     var guestList = document.querySelectorAll('.ready');
     guestList.forEach((guest, i) => {
@@ -168,7 +168,11 @@ document.querySelector("#submitbtn").onclick = function(){
     else{document.querySelector("#name-error").innerHTML =""; valid = true;}
 
     if(num.length == 0){
-        document.querySelector("#num-error").innerHTML = "&#9888; Number cannot be empty.";
+        document.querySelector("#num-error").innerHTML = "&#9888; Phone number cannot be empty.";
+        valid = false;
+    }
+    else if(/(^\d{10}$|^\d{3}\-\d{3}\-\d{4}$)/.test(num) == false){
+        document.querySelector("#num-error").innerHTML = "&#9888; Invalid phone format, use 1234567890 or 123-456-7890";
         valid = false;
     }
     else{document.querySelector("#num-error").innerHTML =""; valid = true;}

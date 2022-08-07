@@ -179,7 +179,7 @@ li{border: 2px solid #888; border-radius: 15px; margin: 10px 0px; text-align: ce
     font-size: 18px;
 }
 
-.label{margin-top: 1em;}
+.label{margin-top: 1em; padding-left: 3px;}
 
 .queue-info input, .admin-info input{
     border: 0;
