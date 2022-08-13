@@ -17,10 +17,9 @@ Current Features:
     - View a guest's queue spot, phone number, and status
     - Remove guest from queue either in information modal or next to guest name
 
-    To add:
-    - Admin entry/login to remove people from queue (simple pin code)
+To add:
+
+    - Admin pin authentication to access admin mode
     - if initial person is not available, tend to next person
         - if after 5 min first person not avail, remove from q;
-        
-    Less important:
-        - Proper design
+    - Text messaging API to send texts to people
