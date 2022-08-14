@@ -22,4 +22,4 @@ To add:
     - Admin pin authentication to access admin mode
     - if initial person is not available, tend to next person
         - if after 5 min first person not avail, remove from q;
-    - Text messaging API to send texts to people
+    - Text messaging API to send texts to people on "Call Up" button click (currently disabled)
