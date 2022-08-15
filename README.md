@@ -23,3 +23,7 @@ To add:
     - Admin pin authentication using backend service (backend)
     - Remote admin mode to allow admins to access queue remotely (Backend)
     - Text messaging API to send texts to people on "Call Up" button click (currently disabled, needs backend code)
+    - Improved design
+        - Make admin mode into an on/off switch toggle
+        - Add animations to buttons in between toggle on and off
+        - Add animation to new queue entries or removal of queue entries
