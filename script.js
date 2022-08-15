@@ -393,19 +393,25 @@ window.onclick = (e) => {
 
 // When admin (tool symbol) button is clicked, close modal
 admin.onclick = ()=>{
-    modalToggle(adminModal, adminModalBlock);
+    contents = document.querySelector('.contents')
 
-    document.querySelector('#adminsubmit').onclick = () => {
-        var pin = document.querySelector('#pin').value.trim();
-        if(pin == "1234"){
-            adminToggle();
-            modalToggle(adminModal, adminModalBlock);
+    if(!contents.classList.contains("admin")){
+        modalToggle(adminModal, adminModalBlock);
+        document.querySelector('#adminsubmit').onclick = () => {
+            var pin = document.querySelector('#pin').value.trim();
+            if(pin == "1234"){
+                adminToggle();
+                modalToggle(adminModal, adminModalBlock);
+            }
+            else{
+                document.querySelector('#admin-error').innerHTML = "&#9888; Invalid PIN";
+                
+            }
+            document.querySelector('#pin').value = "";
         }
-        else{
-            document.querySelector('#admin-error').innerHTML = "&#9888; Invalid PIN";
-        }
-
-
     }
+    else{adminToggle();}
+
+    
     
 }
