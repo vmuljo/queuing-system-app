@@ -1,5 +1,5 @@
 # Q (Queuing System App)
-## Website: https://vmuljo.github.io/q/ (Undergoing bug fix maintenance)
+## Website: https://vmuljo.github.io/q/
 ### Created a program aimed to solve customer dissatisfaction caused by wasting time trying to find an available associate for extended assistance
 
 This program is very similar to Yelp waitlist software, which allows customers/guests to add their name and contact information into a waitlist in order to be seated. Q is intended for similar purposes, specifically retail environments, and allow admins/employees to edit the queue, view each guests contact information, and add/remove a guest.
